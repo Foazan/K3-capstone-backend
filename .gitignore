@@ -1,0 +1,12 @@
+# Environments
+.env
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Uploads/Images (opsional, agar foto CCTV tidak menuhi GitHub)
+uploads/
+images/

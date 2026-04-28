@@ -1,0 +1,36 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Environment files (jangan commit secret ke Docker image)
+.env
+.env.*
+!.env.example
+
+# Uploaded files (disimpan di Docker volume, bukan image)
+uploads/
+
+# IDE & OS files
+.vscode/
+.idea/
+*.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker
+Dockerfile
+docker-compose*.yml
+
+# Testing dan coverage
+.pytest_cache/
+htmlcov/
+.coverage
