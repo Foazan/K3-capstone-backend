@@ -32,7 +32,7 @@ Sebelum menjalankan aplikasi ini (terutama di laptop rekan tim atau server), pas
 ### 1. Clone Repositori
 Jika Anda baru pertama kali mengambil proyek ini, jalankan perintah berikut di terminal:
 ```bash
-git clone <url-repo-anda>
+git clone https://github.com/UsernameKamu/k3-epson-backend.git
 cd k3-epson
 ```
 
