@@ -20,6 +20,9 @@ services:
     restart: always
     ports:
       - "3000:3000"
+    environment:
+      - WAHA_DASHBOARD_USERNAME=admin
+      - WAHA_DASHBOARD_PASSWORD=admin123
 
 volumes:
   db_data:
