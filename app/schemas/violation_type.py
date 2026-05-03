@@ -5,9 +5,10 @@ from pydantic import BaseModel, Field
 
 
 class ViolationTypeBase(BaseModel):
+    yolo_class_id: int = Field(..., description="Index class dari YOLO")
     label_name: str = Field(
         ..., min_length=1, max_length=100,
-        examples=["no_helmet"],
+        examples=["Tidak Pakai Helm"],
         description="Label YOLO untuk jenis pelanggaran"
     )
     penalty_score: int = Field(..., ge=0, examples=[3], description="Skor penalti (0+)")

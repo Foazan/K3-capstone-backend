@@ -28,6 +28,8 @@ class Settings(BaseSettings):
     WA_API_URL: str = ""
     WA_API_TOKEN: str = ""
     WA_DEFAULT_TARGET: str = ""  # Nomor tujuan default (format: 628xxx)
+    WAHA_USERNAME: str = ""
+    WAHA_PASSWORD: str = ""
 
     class Config:
         env_file = ".env"

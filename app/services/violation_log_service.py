@@ -5,7 +5,7 @@ import uuid
 from datetime import datetime, timezone
 from typing import List, Optional, Tuple
 
-from fastapi import UploadFile
+from fastapi import UploadFile, HTTPException
 from sqlalchemy import func
 from sqlalchemy.orm import Session, joinedload
 
@@ -37,10 +37,16 @@ async def save_image(file: UploadFile) -> str:
 
 def create_violation_log(db: Session, payload: ViolationLogCreate) -> ViolationLog:
     """Simpan log pelanggaran dari payload YOLO / ESP32-CAM."""
+    
+    # Translate yolo_class_id ke violation_type_id
+    violation_type = db.query(ViolationType).filter(ViolationType.yolo_class_id == payload.yolo_class_id).first()
+    if not violation_type:
+        raise HTTPException(status_code=404, detail=f"Jenis pelanggaran dengan yolo_class_id {payload.yolo_class_id} tidak ditemukan.")
+
     timestamp = payload.created_at or datetime.now(timezone.utc)
     db_log = ViolationLog(
         camera_id=payload.camera_id,
-        violation_type_id=payload.violation_type_id,
+        violation_type_id=violation_type.id,
         image_path=payload.image_path,
         created_at=timestamp,
         status=ViolationStatus.BELUM_DITINDAK.value,

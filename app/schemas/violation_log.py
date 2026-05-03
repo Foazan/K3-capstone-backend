@@ -17,6 +17,7 @@ class CameraInfo(BaseModel):
 
 class ViolationTypeInfo(BaseModel):
     id: int
+    yolo_class_id: int
     label_name: str
     penalty_score: int
 
@@ -27,7 +28,7 @@ class ViolationTypeInfo(BaseModel):
 class ViolationLogCreate(BaseModel):
     """Payload JSON dari POST /api/violations/detect (tanpa file)."""
     camera_id: int = Field(..., description="ID kamera yang mendeteksi", examples=[1])
-    violation_type_id: int = Field(..., description="ID jenis pelanggaran", examples=[1])
+    yolo_class_id: int = Field(..., description="ID kelas dari YOLO (0, 1, 2, dst)", examples=[0])
     image_path: Optional[str] = Field(
         None,
         max_length=500,

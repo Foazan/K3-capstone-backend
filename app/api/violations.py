@@ -47,7 +47,7 @@ router = APIRouter(prefix="/violations", tags=["Pelanggaran K3"])
 )
 async def detect_violation(
     camera_id: int = Form(..., description="ID kamera pengirim"),
-    violation_type_id: int = Form(..., description="ID jenis pelanggaran"),
+    yolo_class_id: int = Form(..., description="Index class dari YOLO (0, 1, 2)"),
     image: Optional[UploadFile] = File(None, description="Foto bukti pelanggaran (opsional)"),
     db: Session = Depends(get_db),
 ):
@@ -67,7 +67,7 @@ async def detect_violation(
 
     payload = ViolationLogCreate(
         camera_id=camera_id,
-        violation_type_id=violation_type_id,
+        yolo_class_id=yolo_class_id,
         image_path=image_path,
     )
     log = violation_log_service.create_violation_log(db, payload)

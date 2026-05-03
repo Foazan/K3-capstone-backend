@@ -112,10 +112,12 @@ DROP TABLE IF EXISTS `violation_type`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `violation_type` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `label_name` varchar(100) NOT NULL COMMENT 'Label YOLO untuk jenis pelanggaran (misal: no_helmet)',
+  `yolo_class_id` int(11) NOT NULL COMMENT 'Index class dari YOLO (0, 1, 2)',
+  `label_name` varchar(100) NOT NULL COMMENT 'Label YOLO untuk jenis pelanggaran (misal: Tidak Pakai Helm)',
   `penalty_score` int(11) NOT NULL COMMENT 'Skor penalti untuk pelanggaran ini',
   PRIMARY KEY (`id`),
   UNIQUE KEY `ix_violation_type_label_name` (`label_name`),
+  UNIQUE KEY `ix_violation_type_yolo_class_id` (`yolo_class_id`),
   KEY `ix_violation_type_id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -126,7 +128,7 @@ CREATE TABLE `violation_type` (
 
 LOCK TABLES `violation_type` WRITE;
 /*!40000 ALTER TABLE `violation_type` DISABLE KEYS */;
-INSERT INTO `violation_type` VALUES (1,'no_helmet',3),(2,'no_vest',2),(3,'no_gloves',1);
+INSERT INTO `violation_type` VALUES (1,0,'Tidak Pakai Helm',3),(2,1,'Tidak Pakai Rompi',2),(3,2,'Tidak Pakai Sarung Tangan',1);
 /*!40000 ALTER TABLE `violation_type` ENABLE KEYS */;
 UNLOCK TABLES;
 

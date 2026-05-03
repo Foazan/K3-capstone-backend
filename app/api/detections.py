@@ -34,7 +34,7 @@ def create_violation(
     ```json
     {
         "camera_id": 1,
-        "violation_type_id": 1,
+        "yolo_class_id": 0,
         "image_path": "uploads/frame_20240101_120000.jpg"
     }
     ```

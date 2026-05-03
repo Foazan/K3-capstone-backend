@@ -1,5 +1,6 @@
 import logging
 import httpx
+import os
 
 from app.core.config import settings
 
@@ -26,9 +27,11 @@ async def send_whatsapp_group_message(message: str) -> None:
     }
     
     headers = {}
+    headers["X-Api-Key"] = getattr(settings, "WAHA_API_KEY", "k3epson123")
+    headers["Accept"] = "application/json"
+    
     if settings.WA_API_TOKEN:
         # WAHA Plus menggunakan X-Api-Key, Evolution API menggunakan apikey
-        headers["X-Api-Key"] = settings.WA_API_TOKEN
         headers["apikey"] = settings.WA_API_TOKEN
         headers["Authorization"] = f"Bearer {settings.WA_API_TOKEN}"
     
