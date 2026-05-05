@@ -10,3 +10,6 @@ __pycache__/
 # Uploads/Images (opsional, agar foto CCTV tidak menuhi GitHub)
 uploads/
 images/
+
+# AI Models (agar file model berukuran besar tidak di-push ke GitHub)
+*.pt
